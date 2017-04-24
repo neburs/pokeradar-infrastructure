@@ -1,0 +1,7 @@
+#IDE
+.idea
+
+.gradle
+/build/
+
+gradle-wrapper.jar
