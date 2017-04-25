@@ -3,5 +3,4 @@
 
 .gradle
 /build/
-
-gradle-wrapper.jar
+/lib/
