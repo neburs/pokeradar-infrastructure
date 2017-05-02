@@ -6,8 +6,15 @@ Please download first the dataset file from this [url](https://www.kaggle.com/se
 
 ## How run
 
-**Note**: Ensure you're running a instance of mongo in localhost:27017. If you not know how made this, 
+**Note**: Ensure you're running a instance of mongo in localhost:27017. If you not know how made this, check the Readme file in mongodb directory
 
 ```
 java -jar kaggle-dataset-1.0.jar
 ```
+
+## How build
+
+```
+./gradlew clean build
+```
+
