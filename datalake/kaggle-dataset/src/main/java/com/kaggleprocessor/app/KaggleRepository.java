@@ -7,22 +7,17 @@ import org.bson.Document;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
 import java.util.Iterator;
 
 public class KaggleRepository {
 
-    private static String NAME_OF_DATASET_FILE_COMPRESSED = "300k_csv.zip";
+    private static String NAME_OF_DATASET_FILE_COMPRESSED = "data/300k.csv.zip";
     private static String NAME_OF_DATASET_FILE = "300k.csv";
-    private static String NAME_OF_DATASET_DIR = "./kaggledata";
+    private static String NAME_OF_DATASET_DIR = "./data/kaggledata";
 
     public void processKaggleFile() {
         try {
-//            deleteDataSetFile();
             deleteDataSetDir();
-//            downloadDataSet();
             prepareData();
             processCSVFile(NAME_OF_DATASET_DIR + "/" + NAME_OF_DATASET_FILE);
         } catch (IOException e) {
@@ -33,20 +28,6 @@ public class KaggleRepository {
     private void prepareData() throws IOException {
         UnzipUtility manager = new UnzipUtility();
         manager.unzip(NAME_OF_DATASET_FILE_COMPRESSED, NAME_OF_DATASET_DIR);
-    }
-
-    private void downloadDataSet() throws IOException {
-        URL dataSet = new URL("https://www.kaggle.com/semioniy/predictemall/downloads/300k_csv.zip");
-        ReadableByteChannel rbc = Channels.newChannel(dataSet.openStream());
-        FileOutputStream fos = new FileOutputStream(NAME_OF_DATASET_FILE_COMPRESSED);
-        fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
-    }
-
-    private void deleteDataSetFile() {
-        File f = new File(NAME_OF_DATASET_FILE_COMPRESSED);
-        if (f.exists() && !f.isDirectory()) {
-            f.delete();
-        }
     }
 
     private void deleteDataSetDir() {
