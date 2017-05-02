@@ -6,6 +6,7 @@
  * user guide available at https://docs.gradle.org/3.3/userguide/tutorial_java_projects.html
  */
 
+version = 1.0
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
@@ -35,7 +36,12 @@ dependencies {
 jar {
     manifest {
         attributes(
-                'Main-Class': 'om.kaggleprocessor.app.App'
+                'Main-Class': 'com.kaggleprocessor.app.App'
         )
+    }
+    from {
+        configurations.compile.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
     }
 }

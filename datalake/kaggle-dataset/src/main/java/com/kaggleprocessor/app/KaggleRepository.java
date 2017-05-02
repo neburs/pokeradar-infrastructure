@@ -121,7 +121,7 @@ public class KaggleRepository {
         MongoClient mongoClient = new MongoClient("localhost",27017);
 
         // Now connect to your databases
-        MongoDatabase db = mongoClient.getDatabase( "kaggle-datalake" );
+        MongoDatabase db = mongoClient.getDatabase( "datalake" );
         System.out.println("Connect to database successfully");
 
         return db;
