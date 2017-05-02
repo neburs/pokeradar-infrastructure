@@ -1,0 +1,8 @@
+#IDE
+.idea
+
+.gradle
+/build/
+/lib/
+data/kaggledata
+data/300k.csv.zip
