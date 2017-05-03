@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.bson.Document;
 import org.json.JSONObject;
@@ -81,17 +82,18 @@ public class KaggleRepository {
         BufferedReader br = null;
         String line;
         String[] filesOfDataSet = getFilesOfDir(dataSetDirectory);
+        Integer counter = 0;
         try {
+            MongoDatabase dbConnection = connectToDataLake();
             for (String file : filesOfDataSet) {
-
-                MongoDatabase dbConnection = connectToDataLake();
+                System.out.println("#################################################################");
+                System.out.println("### Processing document " + dataSetDirectory + "/" + file + " ###");
+                System.out.println("#################################################################");
+                TimeUnit.SECONDS.sleep(5);
 
                 br = new BufferedReader(new FileReader(dataSetDirectory + "/" + file));
-                Integer counter = 0;
                 while ((line = br.readLine()) != null) {
-
                     JSONObject jsonItem = new JSONObject(line);
-
                     System.out.println("Processing document " + counter);
                     System.out.println(jsonItem.toString());
                     persistItemToDataLake(dbConnection, jsonItem);
