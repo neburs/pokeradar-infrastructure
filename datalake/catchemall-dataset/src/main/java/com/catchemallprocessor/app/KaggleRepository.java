@@ -23,7 +23,12 @@ public class KaggleRepository {
     private static String NAME_OF_DATASET_DIR = "./data/kaggledata";
     private List<String> dataFilesCompressed;
 
-    public KaggleRepository() {
+    private String mongoServerIp;
+    private int mongoServerPort;
+
+    public KaggleRepository(String mongoServerIp, int mongoServerPort) {
+        this.mongoServerIp = mongoServerIp;
+        this.mongoServerPort = mongoServerPort;
         this.dataFilesCompressed = new ArrayList<>();
         for(int i = 1; i <= NUM_PART_DATASET; i++) {
             this.dataFilesCompressed.add(NAME_OF_DATASET_FILE_COMPRESSED + i + FORMAT_OF_DATASET_FILE_COMPRESSED);
@@ -117,7 +122,7 @@ public class KaggleRepository {
 
     private MongoDatabase connectToDataLake() {
 
-        MongoClient mongoClient = new MongoClient("localhost",27017);
+        MongoClient mongoClient = new MongoClient(this.mongoServerIp,this.mongoServerPort);
 
         // Now connect to your databases
         MongoDatabase db = mongoClient.getDatabase( "datalake" );
