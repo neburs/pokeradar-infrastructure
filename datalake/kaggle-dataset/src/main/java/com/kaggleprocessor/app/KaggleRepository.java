@@ -15,6 +15,14 @@ public class KaggleRepository {
     private static String NAME_OF_DATASET_FILE = "300k.csv";
     private static String NAME_OF_DATASET_DIR = "./data/kaggledata";
 
+    private String mongoServerIp;
+    private int mongoServerPort;
+
+    public KaggleRepository(String mongoServerIp, int mongoServerPort) {
+        this.mongoServerIp = mongoServerIp;
+        this.mongoServerPort = mongoServerPort;
+    }
+
     public void processKaggleFile() {
         try {
             deleteDataSetDir();
@@ -99,7 +107,7 @@ public class KaggleRepository {
 
     private MongoDatabase connectToDataLake() {
 
-        MongoClient mongoClient = new MongoClient("localhost",27017);
+        MongoClient mongoClient = new MongoClient(this.mongoServerIp,this.mongoServerPort);
 
         // Now connect to your databases
         MongoDatabase db = mongoClient.getDatabase( "datalake" );
