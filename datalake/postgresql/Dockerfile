@@ -37,4 +37,4 @@ EXPOSE 5432
 
 USER postgres
 
-CMD ["/usr/pgsql-9.4/bin/postgres", "-D", "/datapostgres"]
+CMD ["/usr/pgsql-9.6/bin/postgres", "-D", "/datapostgres"]
