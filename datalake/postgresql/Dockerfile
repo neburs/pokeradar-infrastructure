@@ -32,6 +32,9 @@ RUN mkdir -p /datapostgres && \
 	echo "host all all 172.17.42.0/24 md5" >> /datapostgres/pg_hba.conf && \
 	echo "host all all 172.17.0.0/24 md5" >> /datapostgres/pg_hba.conf
 
+# Open postgresql to all ip
+RUN 	echo "host all all 0.0.0.0/0 md5" >> /datapostgres/pg_hba.conf
+
 
 EXPOSE 5432
 
